@@ -1,0 +1,70 @@
+2026-02-07 14:10:08 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:10:08 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:10:08 [info]: 	WebSocket server started on same port
+2026-02-07 14:12:37 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:12:37 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:12:37 [info]: 	WebSocket server started on same port
+2026-02-07 14:12:43 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:12:43 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:12:43 [info]: 	WebSocket server started on same port
+2026-02-07 14:13:03 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:13:03 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:13:03 [info]: 	WebSocket server started on same port
+2026-02-07 14:13:39 [info]: 	GET / - ::1
+2026-02-07 14:13:39 [info]: 	GET /favicon.ico - ::1
+2026-02-07 14:14:03 [info]: 	GET / - ::1
+2026-02-07 14:14:19 [info]: 	GET / - ::1
+2026-02-07 14:16:55 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:16:55 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:16:55 [info]: 	WebSocket server started on same port
+2026-02-07 14:16:59 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:16:59 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:16:59 [info]: 	WebSocket server started on same port
+2026-02-07 14:17:05 [info]: 	GET / - ::1 requires logger
+2026-02-07 14:17:26 [info]: 	GET / - ::1 requires logger
+2026-02-07 14:17:45 [info]: 	GET / - ::1 requires logger
+2026-02-07 14:17:59 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:17:59 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:17:59 [info]: 	WebSocket server started on same port
+2026-02-07 14:25:23 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:25:23 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:25:23 [info]: 	WebSocket server started on same port
+2026-02-07 14:25:49 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:25:49 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:25:49 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:29 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:29 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:29 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:33 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:33 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:33 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:39 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:39 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:39 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:44 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:44 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:44 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:48 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:48 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:48 [info]: 	WebSocket server started on same port
+2026-02-07 14:26:54 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:26:54 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:26:54 [info]: 	WebSocket server started on same port
+2026-02-07 14:27:00 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:27:00 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:27:00 [info]: 	WebSocket server started on same port
+2026-02-07 14:27:05 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:27:05 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:27:05 [info]: 	WebSocket server started on same port
+2026-02-07 14:27:11 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:27:11 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:27:11 [info]: 	WebSocket server started on same port
+2026-02-07 14:27:16 [info]: 	Server running in development mode on port 5000
+2026-02-07 14:27:16 [info]: 	API available at http://localhost:5000/api
+2026-02-07 14:27:16 [info]: 	WebSocket server started on same port
+2026-02-07 20:29:16 [info]: 	WebSocket Manager initialized
+2026-02-07 20:29:16 [info]: 	🚀 Server running in development mode on port 5000
+2026-02-07 20:29:16 [info]: 	🔗 API Base URL: http://localhost:5000/api/v1
+2026-02-07 20:31:35 [info]: 	WebSocket Manager initialized
+2026-02-07 20:31:35 [info]: 	🚀 Server running in development mode on port 5000
+2026-02-07 20:31:35 [info]: 	🔗 API Base URL: http://localhost:5000/api/v1
