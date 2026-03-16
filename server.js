@@ -4,11 +4,14 @@ import app from './src/app.js';
 import { config } from './src/config/index.js';
 import logger from './src/config/logger.js';
 import wsManager from './src/utils/wsManager.js';
+import connectDB from './src/config/database.js';
 
 let server;
 
-const startServer = () => {
+const startServer = async () => {
     try {
+        await connectDB();
+
         server = http.createServer(app);
 
         // Initialize WebSocket

@@ -1,8 +1,5 @@
 import logger from '../config/logger.js';
 
-/**
- * @description Manages WebSocket connections and logic
- */
 class WebSocketManager {
     constructor(server) {
         this.wss = null;
@@ -21,7 +18,6 @@ class WebSocketManager {
         socket.on('message', (message) => {
             const data = message.toString();
             logger.info(`WebSocket: Received message - ${data}`);
-            // Logic for handling messages goes here
         });
 
         socket.on('close', () => {

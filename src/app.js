@@ -7,7 +7,8 @@ import rateLimit from 'express-rate-limit'; // Rate Limiting
 import hpp from 'hpp'; // HTTP Parameter Pollution
 import { config } from './config/index.js';
 import loggerMiddleware from './middleware/logger.middleware.js';
-import errorMiddleware from './middleware/errorMiddleware.js';
+import { errorConverter, errorHandler } from './middleware/errorMiddleware.js';
+import { ApiError } from './utils/ApiError.js';
 import mainRouter from './routes/index.js';
 
 const app = express();
@@ -19,10 +20,12 @@ app.use(helmet());
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // limit each IP to 100 requests per windowMs
-    messge: 'Too many requests from this IP, please try again after 15 minutes',
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: 'Too many requests from this IP, please try again after 15 minutes',
+    standardHeaders: true,
+    legacyHeaders: false,
+    skip: () => config.env === 'test',
 });
+
 app.use(limiter);
 
 // Performance Middleware
@@ -44,14 +47,22 @@ app.use(express.static("public"));
 
 // Logging Middlewares
 app.use(loggerMiddleware);
-if (config.nodeEnv === 'development') {
+if (config.env === 'development') {
     app.use(morgan('dev'));
 }
 
 // Routes
 app.use('/api/v1', mainRouter);
 
-// Global Error Handling Middleware
-app.use(errorMiddleware);
+// send back a 404 error for any unknown api request
+app.use((req, res, next) => {
+    next(new ApiError(404, 'Not found'));
+});
+
+// convert error to ApiError, if needed
+app.use(errorConverter);
+
+// handle error
+app.use(errorHandler);
 
 export default app;

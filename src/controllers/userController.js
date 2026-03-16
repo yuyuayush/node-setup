@@ -1,24 +1,24 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
-import { ApiResponse } from '../utils/ApiResponse.js';
-import * as userService from '../services/userService.js';
+import { successResponse } from '../utils/responseHandler.js';
+import { userService } from '../services/index.js';
 
-/**
- * @description Get all users
- * @route GET /api/v1/users
- */
-export const getUsers = asyncHandler(async (req, res) => {
-    const users = await userService.getAllUsers();
-
-    return res
-        .status(200)
-        .json(new ApiResponse(200, users, "Users fetched successfully"));
+export const createUser = asyncHandler(async (req, res) => {
+    const user = await userService.createUser(req.body);
+    return successResponse(res, user, "User created successfully", 201);
 });
 
-/**
- * @description Get user by ID
- * @route GET /api/v1/users/:id
- */
+export const getUsers = asyncHandler(async (req, res) => {
+    const filter = {};
+    const options = {
+        sortBy: req.query.sortBy,
+        limit: req.query.limit,
+        page: req.query.page,
+    };
+    const result = await userService.queryUsers(filter, options);
+    return successResponse(res, result, "Users fetched successfully");
+});
+
 export const getUserById = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const user = await userService.getUserById(id);
@@ -27,7 +27,15 @@ export const getUserById = asyncHandler(async (req, res) => {
         throw new ApiError(404, "User not found");
     }
 
-    return res
-        .status(200)
-        .json(new ApiResponse(200, user, "User fetched successfully"));
+    return successResponse(res, user, "User fetched successfully");
+});
+
+export const updateUser = asyncHandler(async (req, res) => {
+    const user = await userService.updateUserById(req.params.id, req.body);
+    return successResponse(res, user, "User updated successfully");
+});
+
+export const deleteUser = asyncHandler(async (req, res) => {
+    await userService.deleteUserById(req.params.id);
+    return successResponse(res, null, "User deleted successfully", 204);
 });

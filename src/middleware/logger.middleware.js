@@ -1,8 +1,5 @@
 import logger from '../config/logger.js';
 
-/**
- * @description Standardized request logging middleware
- */
 const requestLogger = (req, res, next) => {
     const start = Date.now();
 

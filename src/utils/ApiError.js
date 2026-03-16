@@ -1,7 +1,3 @@
-/**
- * @description Common Error class to throw error from anywhere of codebase
- * with a specific message and status code
- */
 class ApiError extends Error {
     constructor(
         statusCode,

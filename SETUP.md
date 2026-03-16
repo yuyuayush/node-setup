@@ -1,8 +1,5 @@
-# Professional Node.js Project Setup
 
-This project has been upgraded to a production-ready ("10+ years experience") architecture.
-
-## 🚀 Key Improvements
+##  Key Improvements
 
 ### 1. Robust Configuration Management (`src/config/index.js`)
 - **Strict Validation**: Utilizing `Joi` to validate environment variables on startup. The app will fail fast if critical configs (like `PORT` or `DB_URL`) are missing.

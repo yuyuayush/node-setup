@@ -1,15 +1,44 @@
-// In a real app, this would be a database call or interaction with an ORM
-// For now, it stays simple but separated in a service layer.
+import User from '../models/userModel.js';
+import { ApiError } from '../utils/ApiError.js';
 
-const users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Doe', email: 'jane@example.com' }
-];
+export const createUser = async (userBody) => {
+    if (await User.isEmailTaken(userBody.email)) {
+        throw new ApiError(400, 'Email already taken');
+    }
+    return User.create(userBody);
+};
 
-export const getAllUsers = async () => {
+export const queryUsers = async (filter, options) => {
+    const users = await User.paginate(filter, options);
     return users;
 };
 
 export const getUserById = async (id) => {
-    return users.find(u => u.id === parseInt(id));
+    return User.findById(id);
+};
+
+export const getUserByEmail = async (email) => {
+    return User.findOne({ email });
+};
+
+export const updateUserById = async (userId, updateBody) => {
+    const user = await getUserById(userId);
+    if (!user) {
+        throw new ApiError(404, 'User not found');
+    }
+    if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+        throw new ApiError(400, 'Email already taken');
+    }
+    Object.assign(user, updateBody);
+    await user.save();
+    return user;
+};
+
+export const deleteUserById = async (userId) => {
+    const user = await getUserById(userId);
+    if (!user) {
+        throw new ApiError(404, 'User not found');
+    }
+    await user.deleteOne();
+    return user;
 };
