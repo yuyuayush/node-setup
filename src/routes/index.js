@@ -1,8 +1,10 @@
 import express from 'express';
 import userRouter from './userRoutes.js';
 import authRouter from './authRoutes.js';
-import docsRouter from './docsRoutes.js';
-import { config } from '../config/index.js';
+import uploadRouter from './upload.route.js';
+import postRouter from './post.route.js';
+import emailRouter from './email.route.js';
+import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -15,11 +17,30 @@ const defaultRoutes = [
         path: '/users',
         route: userRouter,
     },
+    {
+        path: '/email',
+        route: emailRouter,
+    },
+];
+const privateRoutes = [
+    {
+        path: '/upload',
+        route: uploadRouter,
+    },
+    {
+        path: '/posts',
+        route: postRouter,
+    },
+
 ];
 
 
 defaultRoutes.forEach((route) => {
     router.use(route.path, route.route);
+});
+
+privateRoutes.forEach((route) => {
+    router.use(route.path, auth(), route.route);
 });
 
 

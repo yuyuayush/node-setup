@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { config } from '../config/index.js';
+import User from '../models/userModel.js';
 
 export const generateToken = (userId, expires, secret = config.jwt.secret) => {
     const payload = {
@@ -18,6 +19,10 @@ export const generateAuthTokens = async (user) => {
     const refreshTokenExpires = new Date();
     refreshTokenExpires.setDate(refreshTokenExpires.getDate() + config.jwt.refreshExpirationDays);
     const refreshToken = generateToken(user.id, refreshTokenExpires);
+
+    // Store the refresh token in the database
+    user.refreshToken = refreshToken;
+    await user.save();
 
     return {
         access: {

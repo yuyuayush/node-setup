@@ -14,6 +14,13 @@ const envVarsSchema = Joi.object()
         JWT_SECRET: Joi.string().required().description('JWT secret key'),
         JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('minutes after which access tokens expire'),
         JWT_REFRESH_EXPIRATION_DAYS: Joi.number().default(30).description('days after which refresh tokens expire'),
+        AWS_ACCESS_KEY_ID: Joi.string().required().description('AWS access key'),
+        AWS_SECRET_ACCESS_KEY: Joi.string().required().description('AWS secret access key'),
+        AWS_S3_BUCKET_NAME: Joi.string().required().description('AWS S3 bucket name'),
+        AWS_REGION: Joi.string().required().description('AWS Region'),
+        REDIS_URL: Joi.string().required().description('Redis URL'),
+        QUEUE_NAME: Joi.string().default('mailQueue').description('BullMQ Queue name'),
+        SES_SENDER: Joi.string().required().description('SES verified sender email'),
     })
     .unknown();
 
@@ -40,6 +47,17 @@ export const config = {
         secret: envVars.JWT_SECRET,
         accessExpirationMinutes: envVars.JWT_ACCESS_EXPIRATION_MINUTES,
         refreshExpirationDays: envVars.JWT_REFRESH_EXPIRATION_DAYS,
+    },
+    aws: {
+        accessKeyId: envVars.AWS_ACCESS_KEY_ID,
+        secretAccessKey: envVars.AWS_SECRET_ACCESS_KEY,
+        s3BucketName: envVars.AWS_S3_BUCKET_NAME,
+        region: envVars.AWS_REGION,
+        sesSender: envVars.SES_SENDER,
+    },
+    redis: {
+        url: envVars.REDIS_URL,
+        queueName: envVars.QUEUE_NAME,
     },
     isProduction: envVars.NODE_ENV === 'production',
     isDevelopment: envVars.NODE_ENV === 'development',

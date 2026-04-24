@@ -6,20 +6,31 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "worker": "cross-env NODE_ENV=development nodemon src/workers/emailWorker.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
-    "db:seed": "cross-env NODE_ENV=development node src/db/seeders/index.js"
+    "db:seed": "cross-env NODE_ENV=development node src/db/seeders/index.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs --env production",
+    "pm2:reload": "pm2 reload ecosystem.config.cjs",
+    "pm2:status": "pm2 list",
+    "pm2:logs": "pm2 logs",
+    "pm2:stop": "pm2 stop ecosystem.config.cjs",
+    "pm2:delete": "pm2 delete ecosystem.config.cjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1014.0",
+    "@aws-sdk/client-ses": "^3.1024.0",
+    "@aws-sdk/s3-request-presigner": "^3.1020.0",
     "bcryptjs": "^3.0.3",
+    "bullmq": "^5.73.0",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
     "cross-env": "^10.1.0",
@@ -29,6 +40,7 @@
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
     "http-status": "^2.1.0",
+    "ioredis": "^5.10.1",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.6",
@@ -36,10 +48,10 @@
     "nodemon": "^3.1.11",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
+    "tslib": "^2.8.1",
     "validator": "^13.15.26",
     "winston": "^3.19.0",
-    "winston-daily-rotate-file": "^5.0.0",
-    "ws": "^8.19.0"
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",

@@ -44,6 +44,19 @@ const userSchema = mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        avatar:{
+            type:String,
+            default:null
+        },
+        avatarKey: { 
+            type: String, 
+            default: null 
+        },
+        refreshToken: {
+            type: String,
+            default: null,
+            private: true,
+        },
     },
     {
         timestamps: true,
@@ -58,14 +71,17 @@ userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
     return !!user;
 };
 
+
 userSchema.methods.isPasswordMatch = async function (password) {
     const user = this;
     return bcrypt.compare(password, user.password);
 };
 
+
 userSchema.pre('save', async function () {
     const user = this;
-    if (user.isModified('password')) {
+    if (user.isModified('password')) { 
+        //  this is done because the password is encrypted and stored in the database
         user.password = await bcrypt.hash(user.password, 8);
     }
 });

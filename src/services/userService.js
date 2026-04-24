@@ -2,9 +2,6 @@ import User from '../models/userModel.js';
 import { ApiError } from '../utils/ApiError.js';
 
 export const createUser = async (userBody) => {
-    if (await User.isEmailTaken(userBody.email)) {
-        throw new ApiError(400, 'Email already taken');
-    }
     return User.create(userBody);
 };
 

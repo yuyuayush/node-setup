@@ -14,3 +14,9 @@ export const login = asyncHandler(async (req, res) => {
     const tokens = await tokenService.generateAuthTokens(user);
     return successResponse(res, { user, tokens }, "Login successful");
 });
+
+export const refreshTokens = asyncHandler(async (req, res) => {
+    const user = await authService.refreshAuth(req.body.refreshToken);
+    const tokens = await tokenService.generateAuthTokens(user);
+    return successResponse(res, { ...tokens }, "Tokens refreshed successfully");
+});

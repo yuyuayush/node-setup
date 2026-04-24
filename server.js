@@ -1,9 +1,7 @@
 import http from 'http';
-import { WebSocketServer } from "ws";
 import app from './src/app.js';
 import { config } from './src/config/index.js';
 import logger from './src/config/logger.js';
-import wsManager from './src/utils/wsManager.js';
 import connectDB from './src/config/database.js';
 
 let server;
@@ -13,10 +11,6 @@ const startServer = async () => {
         await connectDB();
 
         server = http.createServer(app);
-
-        // Initialize WebSocket
-        const wss = new WebSocketServer({ server });
-        wsManager.init(wss);
 
         server.listen(config.port, () => {
             logger.info(`🚀 Server running in ${config.env} mode on port ${config.port}`);
