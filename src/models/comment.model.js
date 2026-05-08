@@ -1,13 +1,14 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const commentSchema = new Schema({
     postId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Instagram",
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Post",
         required:true
     },
     userId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required:true
     },
     comment:{

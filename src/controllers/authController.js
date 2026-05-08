@@ -1,10 +1,13 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { successResponse } from '../utils/responseHandler.js';
 import { authService, userService, tokenService } from '../services/index.js';
+import logger from '../config/logger.js';
 
 export const register = asyncHandler(async (req, res) => {
+    logger.info(`Registering user: ${req.body.email}`);
     const user = await userService.createUser(req.body);
     const tokens = await tokenService.generateAuthTokens(user);
+    logger.info(`User registered successfully: ${user.email}`);
     return successResponse(res, { user, tokens }, "User registered successfully", 201);
 });
 

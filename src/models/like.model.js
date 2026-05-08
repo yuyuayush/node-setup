@@ -1,16 +1,16 @@
-import {Schema,model} from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const likeSchema = new Schema({
-
     postId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
         required:true
     },
     userId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required:true
     }
-    
 },{
     timestamps:true
 })

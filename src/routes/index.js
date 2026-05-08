@@ -4,6 +4,9 @@ import authRouter from './authRoutes.js';
 import uploadRouter from './upload.route.js';
 import postRouter from './post.route.js';
 import emailRouter from './email.route.js';
+import productRouter from './product.routes.js';
+import paymentRouter from './payment.routes.js';
+import messageRouter from './message.route.js';
 import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -31,7 +34,18 @@ const privateRoutes = [
         path: '/posts',
         route: postRouter,
     },
-
+    {
+        path: '/products',
+        route: productRouter,
+    },
+    {
+        path: '/payment',
+        route: paymentRouter,
+    },
+    {
+        path: '/messages',
+        route: messageRouter,
+    },
 ];
 
 

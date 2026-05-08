@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { config } from '../../config/index.js';
 import logger from '../../config/logger.js';
 import { seedUsers } from './user.seeder.js';
+import { seedProducts } from './product.seeder.js';
+import { seedPosts } from './post.seeder.js';
 
 /**
  * Main Seeder Orchestrator
@@ -24,11 +26,16 @@ const runSeeder = async () => {
 
         // 2. Optional: Clean database
         // In a real project, you might want to clear specific collections first
-        logger.info('Clearing existing users...');
+        logger.info('Clearing existing collections...');
         await mongoose.connection.collection('users').deleteMany({});
+        await mongoose.connection.collection('products').deleteMany({});
+        await mongoose.connection.collection('posts').deleteMany({});
+        await mongoose.connection.collection('images').deleteMany({});
 
         // 3. Execution
         await seedUsers(15); // Seed 15 users
+        await seedProducts(20);
+        await seedPosts(30);
 
         logger.info('Database Seeding Completed Successfully! 🚀');
     } catch (error) {
